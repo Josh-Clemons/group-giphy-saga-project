@@ -15,7 +15,7 @@ export default function ListItem() {
         <div className="gifResult">
             {gifResponseList.map(newGif => (
                 <li key={newGif.id}>
-                    {newGif}
+                    <img src={newGif.images.fixed_width.url} />
                     <button className='addFavoriteBtn' onClick={handleClick}>Add to Favorites</button>
                 </li>
             ))}

@@ -23,6 +23,7 @@ const favoriteList = (state = [], action) => {
 
 const gifResponseList = (state = [], action) => {
     if (action.type === 'SET_RESULTS') {
+        // console.log('in set_result reducer, action.payload', action.payload)
         return action.payload;
     }
     return state;
@@ -54,12 +55,11 @@ function* addGif(action) {
 //Should this be what runs when the search btn is clicked?
 //if so, I think the url needs to be the giphy api url
 function* fetchSearchGifs(action) {
-    console.log('in index.js fetchGifs');
+    console.log('in index.js fetchGifs', action.payload);
     try {                  // I think the route here needs to be the API url
-
         // the .env variable might not work, I imported it into server and configured it there
         const gifResponse = yield axios.post('/api/search', action.payload)
-        yield console.log('gifs are:', gifResponse);
+        yield console.log('gifs are:', gifResponse.data);
 
         yield put({
             type: 'SET_RESULTS',
