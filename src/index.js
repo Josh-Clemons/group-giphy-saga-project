@@ -16,8 +16,8 @@ const favoriteList = (state = [], action) => {
     switch (action.type) {
         case 'SET_GIFS':
             return action.payload;
-        case 'ADD_GIF':
-            return [...state, action.payload];
+        // case 'ADD_GIF':
+        //     return [...state, action.payload];
     }
     return state;
 }
@@ -31,7 +31,7 @@ function* rootSaga() {
 //TODO: add addGif(axios.post) this happens when favorite is clicked
 function* addGif(action) {
     try {              //I think this is the right route
-        yield axios.post('./routes/favorite.router', action.payload)
+        yield axios.post('/api/favorite', action.payload)
         console.log('adding gif', action.payload);
 
         yield put ({
@@ -64,14 +64,14 @@ function* fetchGifs(action) {
 
 
 //TODO: add setFavoriteGif(axios.update) this happens when the add a category?
-
+const sagaMiddleware = createSagaMiddleware();
 //TODO: create store
 const store = createStore(
     combineReducers({favoriteList}),
     applyMiddleware(sagaMiddleware, logger)
 );
 
-const sagaMiddleware = createSagaMiddleware();
+
 
 sagaMiddleware.run(rootSaga);
 
