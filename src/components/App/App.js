@@ -4,8 +4,8 @@ import './App.css';
 //TODO: Import component files
 import Search from '../Search/Search';
 import { Button } from '@material-ui/core';
-//placeholder for whatever we end up calling this component
-//import Favorites from '../Favorites/Favorites';
+import FavoriteView from '../FavoriteView/FavoriteView';
+
 
 
 
@@ -22,17 +22,17 @@ function App(props) {
             <li>
               <Link to='/'>Search</Link>
             </li>
-            {/* <li>
-              <Link to='/favorites'>Favorites</Link>
-            </li> */}
+            <li>
+              <Link to='/favorite'>Favorites</Link>
+            </li>
           </ul>
         </nav>
         <Route exact path= '/'>
           <Search />
         </Route>
-        {/* <Route exact path='favorites'>
-          <Favorites />
-        </Route> */}
+        <Route exact path='/favorite'>
+          <FavoriteView />
+        </Route>
       </Router>
     </div>
   );
