@@ -55,7 +55,7 @@ function* addGif(action) {
 function* fetchSearchGifs(action) {
     console.log('in index.js fetchGifs');
     try {                  // I think the route here needs to be the API url
-        const gifResponse = yield axios.get('INSERT API URL HERE')
+        const gifResponse = yield axios.get('')
         console.log('gifs are:', gifResponse);
 
         yield put({
