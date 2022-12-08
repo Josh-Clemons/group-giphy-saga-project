@@ -3,8 +3,8 @@ import {HashRouter as Router, Route, Link} from 'react-router-dom';
 
 //TODO: Import component files
 import Search from '../Search/Search';
-//placeholder for whatever we end up calling this component
-//import Favorites from '../Favorites/Favorites';
+import FavoriteView from '../FavoriteView/FavoriteView';
+
 
 
 
@@ -19,15 +19,15 @@ function App(props) {
               <Link to='/'>Search</Link>
             </li>
             <li>
-              <Link to='/favorites'>Favorites</Link>
+              <Link to='/favorite'>Favorites</Link>
             </li>
           </ul>
         </nav>
         <Route exact path= '/'>
           <Search />
         </Route>
-        <Route exact path='favorites'>
-          <Favorites />
+        <Route exact path='/favorite'>
+          <FavoriteView />
         </Route>
       </Router>
     </div>
