@@ -23,7 +23,7 @@ const favoriteList = (state = [], action) => {
 
 const gifResponseList = (state = [], action) => {
     if (action.type === 'SET_RESULTS') {
-        return action.payload
+        return action.payload;
     }
     return state;
 }
@@ -91,7 +91,7 @@ function* fetchFavoriteGifs(action) {
 const sagaMiddleware = createSagaMiddleware();
 //TODO: create store
 const store = createStore(
-    combineReducers({ favoriteList }, { gifResponseList }),
+    combineReducers({ favoriteList, gifResponseList }),
     applyMiddleware(sagaMiddleware, logger)
 );
 
