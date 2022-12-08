@@ -10,6 +10,7 @@ import { Provider } from 'react-redux';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 
 
+
 //add reducer. state is set to an empty array since we are
 //getting a list of multiple results
 const favoriteList = (state = [], action) => {
@@ -31,7 +32,7 @@ const gifResponseList = (state = [], action) => {
 function* rootSaga() {
     yield takeEvery('FETCH_GIFS', fetchSearchGifs);
     yield takeEvery('ADD_GIF', addGif);
-    yield takeEvery('FETCH_FAVORITES', fetchFavoriteGifs );
+    yield takeEvery('FETCH_FAVORITES', fetchFavoriteGifs);
 }
 
 //TODO: add addGif(axios.post) this happens when favorite is clicked
@@ -40,7 +41,7 @@ function* addGif(action) {
         yield axios.post('/api/favorite', action.payload)
         console.log('adding gif', action.payload);
 
-        yield put ({
+        yield put({
             type: 'FETCH_GIFS'
         })
     }
@@ -55,8 +56,9 @@ function* addGif(action) {
 function* fetchSearchGifs(action) {
     console.log('in index.js fetchGifs');
     try {                  // I think the route here needs to be the API url
-        const gifResponse = yield axios.get('INSERT API URL HERE')
-        console.log('gifs are:', gifResponse);
+        // the .env variable might not work, I imported it into server and configured it there
+        const gifResponse = yield axios.post('/api/search', action.payload)
+        yield console.log('gifs are:', gifResponse);
 
         yield put({
             type: 'SET_RESULTS',
@@ -74,7 +76,7 @@ function* fetchFavoriteGifs(action) {
         const favoriteResponse = yield axios.get('/api/favorite');
         console.log('favorite gifs:', favoriteResponse);
 
-        yield put ({
+        yield put({
             type: 'FETCH_FAVORITES',
             payload: favoriteResponse.data
         });
@@ -89,7 +91,7 @@ function* fetchFavoriteGifs(action) {
 const sagaMiddleware = createSagaMiddleware();
 //TODO: create store
 const store = createStore(
-    combineReducers({favoriteList}, {gifResponseList}),
+    combineReducers({ favoriteList }, { gifResponseList }),
     applyMiddleware(sagaMiddleware, logger)
 );
 
@@ -97,4 +99,4 @@ const store = createStore(
 
 sagaMiddleware.run(rootSaga);
 
-ReactDOM.render(<Provider store ={store}><App /></Provider>, document.getElementById('root'));
+ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
