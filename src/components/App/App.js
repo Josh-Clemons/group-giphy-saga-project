@@ -18,17 +18,17 @@ function App(props) {
             <li>
               <Link to='/'>Search</Link>
             </li>
-            {/* <li>
+            <li>
               <Link to='/favorites'>Favorites</Link>
-            </li> */}
+            </li>
           </ul>
         </nav>
         <Route exact path= '/'>
           <Search />
         </Route>
-        {/* <Route exact path='favorites'>
+        <Route exact path='favorites'>
           <Favorites />
-        </Route> */}
+        </Route>
       </Router>
     </div>
   );
