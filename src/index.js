@@ -19,6 +19,7 @@ const favoriteList = (state = [], action) => {
         case 'ADD_GIF':
             return [...state, action.payload];
     }
+    return state;
 }
 
 //add rootSaga
