@@ -58,7 +58,7 @@ function* fetchSearchGifs(action) {
     try {                  // I think the route here needs to be the API url
         // the .env variable might not work, I imported it into server and configured it there
         const gifResponse = yield axios.post('/api/search', action.payload)
-        console.log('gifs are:', gifResponse);
+        yield console.log('gifs are:', gifResponse);
 
         yield put({
             type: 'SET_RESULTS',
