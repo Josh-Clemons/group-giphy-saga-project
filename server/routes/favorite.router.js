@@ -6,7 +6,8 @@ const router = express.Router();
 
 // return all favorite images
 router.get('/', (req, res) => {
-  const queryText = 'SELECT * FROM "favorites";';
+  const queryText = `SELECT "favorites"."id", "favorites"."url", "category"."name" AS "category_name" FROM "favorites"
+                      JOIN "category" ON "favorites"."category_id" = "category"."id";`;
 
   pool.query(queryText).then((results) => {
     res.send(results.rows);
@@ -44,7 +45,7 @@ router.put('/:favId', (req, res) => {
 
 // delete a favorite
 router.delete('/', (req, res) => {
-  const gifId = req.body.id // send the id in the body (data) of the axios.delete request
+  const gifId = req.body.id; // send the id in the body (data) of the axios.delete request
 
   const queryText = 'DELETE FROM "favorites" WHERE "id"=$1;';
 
