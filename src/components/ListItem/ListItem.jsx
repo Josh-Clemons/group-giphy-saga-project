@@ -1,9 +1,10 @@
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import './ListItem.css';
 
 export default function ListItem() {
 
     const dispatch = useDispatch();
+    const gifResponseList = useSelector(store => store.gifResponseList);
 
     const handleClick = () => {
         dispatch({ type: 'ADD_GIF', payload: newGif.data});
@@ -11,8 +12,12 @@ export default function ListItem() {
 
     return (
         <div className="gifResult">
-            //gifResult
-            <div className='addFavoriteBtn' onClick={handleClick}>Add to Favorites</div>
+            {gifResponseList.map(newGif => (
+                <li key={newGif.id}>
+                    {newGif}
+                    <button className='addFavoriteBtn' onClick={handleClick}>Add to Favorites</button>
+                </li>
+            ))}
         </div>
     )
     
