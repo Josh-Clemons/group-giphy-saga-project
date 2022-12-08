@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import ListItem from '../ListItem/ListItem';
+import './Search.css';
 
 function Search() {
     const dispatch = useDispatch();
@@ -39,7 +41,7 @@ function Search() {
                 </form>
             </section>
             <section id="search-results">
-                {/*This is where the ListItem component will be located*/}
+                <ListItem />
             </section>
         </>
     );
