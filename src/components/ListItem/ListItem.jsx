@@ -1,5 +1,5 @@
 import {useDispatch} from 'react-redux';
-import '.ListItem.css';
+import './ListItem.css';
 
 export default function ListItem() {
 

@@ -1,0 +1,14 @@
+.app-header {
+    background-color: lightsteelblue;
+    text-align: center;
+    font-variant: small-caps;
+    font-family: OCR A Std, monospace
+}
+
+.links {
+    text-align: center;
+    list-style: none;
+    font-family: OCR A Std, monospace;
+    font-variant: small-caps;
+}
+
