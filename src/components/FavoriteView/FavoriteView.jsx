@@ -11,6 +11,9 @@ function FavoriteView() {
         dispatch({ type: 'FETCH_FAVORITES'});
     }, []); 
 
+    // favorite.id: the id of the favorite (for the key attribute)
+    // favorite.url: the image url to be displayed
+    // favorite.name: the category name, to be displayed under the image
     return (
         <section id="favorite-list">
             {favoriteState.map((favorite) => {
