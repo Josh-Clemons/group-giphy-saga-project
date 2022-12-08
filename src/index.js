@@ -56,6 +56,7 @@ function* addGif(action) {
 function* fetchSearchGifs(action) {
     console.log('in index.js fetchGifs');
     try {                  // I think the route here needs to be the API url
+
         // the .env variable might not work, I imported it into server and configured it there
         const gifResponse = yield axios.post('/api/search', action.payload)
         yield console.log('gifs are:', gifResponse);

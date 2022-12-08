@@ -1,8 +1,9 @@
 import React from 'react';
 import {HashRouter as Router, Route, Link} from 'react-router-dom';
-
+import './App.css';
 //TODO: Import component files
 import Search from '../Search/Search';
+import { Button } from '@material-ui/core';
 import FavoriteView from '../FavoriteView/FavoriteView';
 
 
@@ -11,7 +12,10 @@ import FavoriteView from '../FavoriteView/FavoriteView';
 function App(props) {
   return (
     <div>
-      <h1>Giphy Search!</h1>
+      <header className='app-header'>
+        <h1>Giphy Search!</h1>
+      </header>
+      
       <Router>
         <nav>
           <ul className='links'>
