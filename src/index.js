@@ -34,7 +34,7 @@ function* rootSaga() {
     yield takeEvery('FETCH_GIFS', fetchSearchGifs);
     yield takeEvery('ADD_GIF', addGif);
     yield takeEvery('FETCH_FAVORITES', fetchFavoriteGifs);
-    
+    yield takeEvery('ADD_CATEGORY', addCategory)
 }
 
 //TODO: add addGif(axios.post) this happens when favorite is clicked
@@ -88,7 +88,18 @@ function* fetchFavoriteGifs(action) {
     }
 }
 
+function* addCategory(action) {
+    try {
+        yield axios.post('/api/favorite', action.payload)
 
+        yield put({
+            type: 'FETCH_FAVORITES'
+        })
+    }
+    catch (error) {
+        console.log('error in index.js addCategory', error);
+    }
+}
 //TODO: add setFavoriteGif(axios.update) this happens when the add a category?
 const sagaMiddleware = createSagaMiddleware();
 //TODO: create store
