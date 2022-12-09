@@ -5,16 +5,17 @@ export default function FavoriteItem() {
 
     const dispatch = useDispatch();
     const favoriteList = useSelector(store => store.favoriteList);
-
+    console.log('favorite list:',  favoriteList);
     const handleClick = () => {
         dispatch({ type: 'ADD_CATEGORY', payload: favGif.category });
     }
 
     return (
         <div className="gifResult">
-            {favoriteList.map(favGif => (
+            <ul>
+                {favoriteList.map(favGif => (
                 <li key={favGif.id}>
-                    {favGif}
+                    <img src= {favGif.url} />
                     <select id="category" value="">
                         <option value="" disabled selected hidden>Choose Category</option>
                         <option value="funny">Funny</option>
@@ -26,6 +27,8 @@ export default function FavoriteItem() {
                     <button className='addCategoryBtn' onClick={handleClick}>Add Category</button>
                 </li>
             ))}
+            </ul>
+
         </div>
     )
     
