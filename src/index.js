@@ -90,7 +90,30 @@ function* fetchFavoriteGifs(action) {
 
 function* addCategory(action) {
     try {
-        yield axios.post('/api/favorite', action.payload)
+        let category_id = 0;
+        console.log('action.payload.categoryValue in addCategory: ' ,action.payload.categoryValue)
+        switch (action.payload.categoryValue) {
+            case 'funny':
+                category_id = 1;
+                break;
+            case 'cohort':
+                category_id = 2;
+                break;
+            case 'cartoon':
+                category_id = 3;
+                break;
+            case 'nsfw':
+                category_id = 4;
+                break;
+            case 'meme':
+                category_id = 5;
+                break;
+            default:
+                category_id = 6;
+        }
+            
+
+        yield axios.put('/api/favorite/' + action.payload.id, category_id)
 
         yield put({
             type: 'FETCH_FAVORITES'

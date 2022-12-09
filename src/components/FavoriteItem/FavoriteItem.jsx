@@ -4,8 +4,6 @@ import { useState } from 'react';
 
 export default function FavoriteItem() {
 
-    const [categoryValue, setCategoryValue] = useState('');
-
     const dispatch = useDispatch();
     const favoriteList = useSelector(store => store.favoriteList);
     console.log('favorite list:',  favoriteList);
@@ -26,8 +24,11 @@ export default function FavoriteItem() {
                             id="category" 
                             value = {favGif.category_name}
                             onChange= {(event) => {
-                                setCategoryValue(event.target.value);
-                                dispatch({ type: 'ADD_CATEGORY', payload: categoryValue});
+                                dispatch({ type: 'ADD_CATEGORY', payload: {
+                                    categoryValue : event.target.value,
+                                    id: favGif.id
+                                }
+                            });
                             }}
                             >
                         <option value="none" disabled hidden>Choose Category</option>

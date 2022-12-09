@@ -12,7 +12,6 @@ export default function ListItem() {
             {gifResponseList.map(newGif => (
                 <li key={newGif.id}>
                     <img src={newGif.images.fixed_width.url} />
-                    {console.log('newGif', newGif.images.fixed_width.url)}
                     <button className='addFavoriteBtn' onClick={() => dispatch({ type: 'ADD_GIF', payload: newGif})}>Add to Favorites</button>
                 </li>
             ))}
