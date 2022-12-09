@@ -19,7 +19,8 @@ router.get('/', (req, res) => {
 
 // add a new favorite
 router.post('/', (req, res) => {
-  const queryText = `INSERT INTO "favorites" ("url") VALUES ('${req.body}')`
+  console.log('router post req.body is', req.body.images.fixed_width.url)
+  const queryText = `INSERT INTO "favorites" ("url") VALUES ('${req.body.images.fixed_width.url}')`
 
   pool.query(queryText).then(() => {
     res.sendStatus(201);
