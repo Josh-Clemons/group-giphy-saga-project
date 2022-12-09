@@ -1,14 +1,14 @@
 import {useDispatch, useSelector} from 'react-redux';
 import './FavoriteItem.css';
+import { useState } from 'react';
 
 export default function FavoriteItem() {
+
+    const [categoryValue, setCategoryValue] = useState('');
 
     const dispatch = useDispatch();
     const favoriteList = useSelector(store => store.favoriteList);
     console.log('favorite list:',  favoriteList);
-    const handleClick = () => {
-        dispatch({ type: 'ADD_CATEGORY', payload: favGif.category });
-    }
 
     return (
         <div className="gifResult">
@@ -16,7 +16,12 @@ export default function FavoriteItem() {
                 {favoriteList.map(favGif => (
                 <li key={favGif.id}>
                     <img src= {favGif.url} />
-                    <select id="category" value="">
+                    <select 
+                            id="category" 
+                            value=""
+                            onChange={  () => {
+                                dispatch({ type: 'ADD_CATEGORY', payload: });
+                            }}>
                         <option value="" disabled selected hidden>Choose Category</option>
                         <option value="funny">Funny</option>
                         <option value="cohort">Cohort</option>
@@ -24,7 +29,7 @@ export default function FavoriteItem() {
                         <option value="nsfw">NSFW</option>
                         <option value="meme">meme</option>
                     </select>
-                    <button className='addCategoryBtn' onClick={handleClick}>Add Category</button>
+                    {/* <button className='addCategoryBtn' onClick={handleClick}>Add Category</button> */}
                 </li>
             ))}
             </ul>
