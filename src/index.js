@@ -15,7 +15,7 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 //getting a list of multiple results
 const favoriteList = (state = [], action) => {
     switch (action.type) {
-        case 'SET_GIFS':
+        case 'SET_FAVORITES':
             return action.payload;
     }
     return state;
@@ -34,6 +34,7 @@ function* rootSaga() {
     yield takeEvery('FETCH_GIFS', fetchSearchGifs);
     yield takeEvery('ADD_GIF', addGif);
     yield takeEvery('FETCH_FAVORITES', fetchFavoriteGifs);
+    
 }
 
 //TODO: add addGif(axios.post) this happens when favorite is clicked
@@ -43,7 +44,7 @@ function* addGif(action) {
         console.log('adding gif', action.payload);
 
         yield put({
-            type: 'FETCH_GIFS'
+            type: 'FETCH_FAVORITES'
         })
     }
     catch (error) {
@@ -78,7 +79,7 @@ function* fetchFavoriteGifs(action) {
         console.log('favorite gifs:', favoriteResponse);
 
         yield put({
-            type: 'FETCH_FAVORITES',
+            type: 'SET_FAVORITES',
             payload: favoriteResponse.data
         });
     }
